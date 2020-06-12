@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { CartContext } from "../contexts/cart";
 import { Link } from "react-router-dom";
 import Comback from "../images/comeback.jpg";
-
+import { Button } from 'react-bootstrap'
 export class Cart extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +11,7 @@ export class Cart extends Component {
     };
   }
   render() {
-    console.log(localStorage.getItem("length"));
+    console.log(this.state.value);
     return (
       <div className="container " id="addCart">
         {localStorage.getItem("products") ? (
@@ -42,22 +42,23 @@ export class Cart extends Component {
                             <p>
                               <CartContext.Consumer>
                                 {({ removeToCart }) => (
-                                  <button onClick={() => removeToCart(product)}>
+                                  <Button variant="primary" onClick={() => removeToCart(product)} style={{ marginRight: '5px' }}>
                                     -
-                                  </button>
+                                  </Button>
                                 )}
                               </CartContext.Consumer>
                               <input
                                 type="text"
                                 value={product.units}
                                 id="number__product"
+                                style={{ background: '#fff'}}
                               />
                               {/* <button onClick={that.decrease}>+</button>        */}
                               <CartContext.Consumer>
                                 {({ addToCart }) => (
-                                  <button onClick={() => addToCart(product)}>
+                                  <Button variant="primary" onClick={() => addToCart(product)} style={{ marginLeft: '5px' }}>
                                     +
-                                  </button>
+                                  </Button>
                                 )}
                               </CartContext.Consumer>
                             </p>
@@ -89,13 +90,13 @@ export class Cart extends Component {
                   </CartContext.Consumer>
                 </p>
                 <div className="row">
-                  <Link
+                  <Button
                     id="ready__pay"
-                    to="/"
+                    // to="/"
                     className="btn btn-primary col-md-12"
                   >
                     Tiến hành đặt hàng
-                  </Link>
+                  </Button>
                 </div>
               </div>
             </div>
